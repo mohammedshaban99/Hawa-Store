@@ -1,0 +1,38 @@
+@if(products==null)
+{
+<div class="btn btn-danger">No Prodcuts To Display</div>
+}
+
+@else{
+
+<div class="container my-5">
+  <div class="row" style="padding-bottom: 20px;">
+    @for(product of filteredproducts(); track product)
+    {
+    <div class="card  shadow-sm col-md-2 col-lg-3 col-sm-1
+       " style="padding:0; width:300px; height:400px; margin-left:20px; margin-top: 20px;">
+      <img [src]="product?.Image" class="card-img-top" alt="{{ product?.Name }}" height="200px" >
+
+      <div class="card-body d-flex flex-column">
+
+        <h5 class="card-title">{{ product?.Name }}</h5>
+
+        <p class="card-text text-muted mb-2">
+          Price: <strong [class.text-danger]="product.Price <=0">{{ product?.Price| currency:'USD':true:'1.0-2' }}</strong>
+        </p>
+
+        <p class="card-text mb-3">
+
+          In Stock: {{ product?.Quantity }}
+        </p>
+
+        <button class="btn btn-primary mt-auto" [disabled]="product.Quantity === 0"  (click)="AddToCart(product)">
+          Add to Cart
+        </button>
+
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

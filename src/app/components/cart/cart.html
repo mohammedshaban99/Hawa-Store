@@ -1,0 +1,58 @@
+<div class="cart-container" [class.hidden]="!cartIsOpen()">
+  <div class="cart-header">
+    <h4 class="cart-header-caption">Cart items</h4>
+    <button class="cart-btn-close" (click)="colseCart()">x</button>
+  </div>
+
+  <div class="cart-body">
+    @if(cartitems().length ===0)
+    {
+    <div class="cart-empty">Cart is impty</div>
+    }
+    @else
+    {
+    @for(cartitem of cartitems(); track cartitem)
+    {
+    <div class="cart-item">
+      <img [src]="cartitem.Image" width="100px" height="100px" alt="loading">
+      <div class="cart-item-name">{{cartitem.Name}}</div>
+      <div class="cart-item-quantity">
+        <span role="button" (click)="decrementProductQuantity(cartitem.Id)">-</span>
+        <span>1</span>
+        <span role="button" (click)="incrementProductQuantity(cartitem.Id)">+</span>
+      </div>
+      <div class="cart-item-price">{{ cartitem?.Price| currency:'USD':true:'1.0-2' }}</div>
+      <div role="button" (click)="removeProdcutFromCart(cartitem.Id)" class="cart-item-remove">x</div>
+    </div>
+    }
+
+    }
+  </div>
+
+  @if (cartitems().length !== 0) {
+  <div class="cart-footer">
+    <div class="cart-summary">
+
+      <div class="subtotal">
+        <span class="subtotal-caption">Subtotal</span>
+        <span class="subtotal-price">{{ getSubTotal() }}</span>
+      </div>
+
+      <div class="shipping">
+        <span class="shipping-caption">Shipping</span>
+        <span class="shipping-price">{{ shippingPrice }}</span>
+      </div>
+
+      <div class="total">
+        <span class="total-caption">Total</span>
+        <span class="total-price">{{ getTotal() }}</span>
+      </div>
+
+
+      <div class="checkout">
+        <button>PROCEED TO CHECKOUT</button>
+      </div>
+
+    </div>
+  </div>
+}
