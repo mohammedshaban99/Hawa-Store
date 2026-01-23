@@ -139,8 +139,10 @@
   flex-shrink: 0;
 }
 
-.cart-item-quantity span[role="button"] {
+.cart-item-quantity button {
   cursor: pointer;
+  border: none;
+  outline: none;
   width: 22px;
   height: 22px;
   display: flex;
@@ -155,12 +157,12 @@
   line-height: 1;
 }
 
-.cart-item-quantity span[role="button"]:hover {
+.cart-item-quantity button:hover {
   background-color: #3DBFA3;
   color: #ffffff;
 }
 
-.cart-item-quantity span[role="button"]:active {
+.cart-item-quantity button:active {
   transform: scale(0.95);
 }
 

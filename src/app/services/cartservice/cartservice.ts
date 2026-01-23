@@ -1,41 +1,58 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { IProduct } from '../../models/iproduct';
 import { ProdcutService } from '../productservice/productservice';
+
+interface ICartItem {
+  product: IProduct;
+  quantity: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class Cartservice {
+  constructor(private _productService: ProdcutService) {}
 
+  products = signal<ICartItem[]>([]);
+  cartIsOpen = signal<boolean>(false);
 
-    /**
-     *
-     */
-    constructor(private _productService:ProdcutService) {
-
-    }
-
-   products = signal<IProduct[]>([]);
-  cartIsOpen= signal<boolean>(false);
+  totalItems = computed(() => {
+    return this.products().reduce((sum, item) => sum + item.quantity, 0);
+  });
 
   addToCart(product: IProduct) {
-
-
-      // first check if item exist nothing if not exist add it to  cart list
-       const exists = this.products().some(item => item.Id === product.Id);
-    if (!exists) {
-      this.products.update(items => [...items, product]);
-       // second update products list with new products
-    this._productService.products.update(products=>
-    products.map(prod=>
-      prod.Id===product.Id ?{...prod, Quantity:prod.Quantity-1} :prod ));
+    const existsIndex = this.products().findIndex(item => item.product.Id === product.Id);
+    if (existsIndex === -1 && product.Quantity > 0) {
+      this.products.update(items => [...items, { product, quantity: 1 }]);
+      this._productService.products.update(products =>
+        products.map(prod =>
+          prod.Id === product.Id ? { ...prod, Quantity: prod.Quantity - 1 } : prod
+        )
+      );
+    } else if (existsIndex !== -1 && product.Quantity > 0) {
+      this.products.update(items =>
+        items.map((item, index) =>
+          index === existsIndex ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+      this._productService.products.update(products =>
+        products.map(prod =>
+          prod.Id === product.Id ? { ...prod, Quantity: prod.Quantity - 1 } : prod
+        )
+      );
     }
   }
 
   removeFromCart(productId: number) {
-    this.products.update(items =>
-      items.filter(item => item.Id !== productId)
-    );
+    const itemToRemove = this.products().find(item => item.product.Id === productId);
+    if (itemToRemove) {
+      this._productService.products.update(products =>
+        products.map(prod =>
+          prod.Id === productId ? { ...prod, Quantity: prod.Quantity + itemToRemove.quantity } : prod
+        )
+      );
+    }
+    this.products.update(items => items.filter(item => item.product.Id !== productId));
   }
 
   clearCart() {
@@ -51,8 +68,4 @@ export class Cartservice {
    this.cartIsOpen.set(false);
   }
 
-  cartCount()
-  {
-   return this.products().length;
-  }
 }

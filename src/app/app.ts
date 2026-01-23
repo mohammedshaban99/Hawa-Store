@@ -1,18 +1,33 @@
-import { Component, signal } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal } from '@angular/core';
 import { Footer } from "./components/footer/footer";
 import { Content } from "./components/content/content";
 import { Header } from "./components/header/header";
-import { RouterOutlet } from "../../node_modules/@angular/router/types/_router_module-chunk";
 import { Cart } from "./components/cart/cart";
+import { SpinnerloadingService } from './services/spinnerloading/spinnerloading';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Footer, Content, Header, Cart],
+  imports: [Footer, Content, Header, Cart ],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.css'],
+   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class App {
+export class App   {
+
+  /**
+   *
+   */
+  constructor(private _spinner:SpinnerloadingService) {
+  }
+
+  ngOnInit()
+  {
+    this._spinner.showSpinner();
+    setTimeout(()=>{
+     this._spinner.hideSpinner();
+    },3000)
+  }
 }
 

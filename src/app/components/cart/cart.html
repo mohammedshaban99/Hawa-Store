@@ -11,21 +11,20 @@
     }
     @else
     {
-    @for(cartitem of cartitems(); track cartitem)
+    @for(cartitem of cartitems(); track $index)
     {
     <div class="cart-item">
-      <img [src]="cartitem.Image" width="100px" height="100px" alt="loading">
-      <div class="cart-item-name">{{cartitem.Name}}</div>
+      <img [src]="cartitem.product.Image" width="100px" height="100px" alt="loading">
+      <div class="cart-item-name">{{cartitem.product.Name}}</div>
       <div class="cart-item-quantity">
-        <span role="button" (click)="decrementProductQuantity(cartitem.Id)">-</span>
-        <span>1</span>
-        <span role="button" (click)="incrementProductQuantity(cartitem.Id)">+</span>
+        <button [disabled]="cartitem.quantity===1"  (click)="decrementQuantity($index)">-</button>
+        <span>{{cartitem.quantity}}</span>
+        <button  (click)="incrementQuantity($index)">+</button>
       </div>
-      <div class="cart-item-price">{{ cartitem?.Price| currency:'USD':true:'1.0-2' }}</div>
-      <div role="button" (click)="removeProdcutFromCart(cartitem.Id)" class="cart-item-remove">x</div>
+      <div class="cart-item-price">{{ cartitem.product.Price| currency:'USD':true:'1.0-2' }}</div>
+      <button role="button" (click)="removeProdcutFromCart(cartitem.product)" class="cart-item-remove">x</button>
     </div>
     }
-
     }
   </div>
 
@@ -35,17 +34,17 @@
 
       <div class="subtotal">
         <span class="subtotal-caption">Subtotal</span>
-        <span class="subtotal-price">{{ getSubTotal() }}</span>
+        <span class="subtotal-price">{{ getSubTotal() | currency:'USD':true:'1.0-2' }}</span>
       </div>
 
       <div class="shipping">
         <span class="shipping-caption">Shipping</span>
-        <span class="shipping-price">{{ shippingPrice }}</span>
+        <span class="shipping-price">{{ shippingPrice | currency:'USD':true:'1.0-2' }}</span>
       </div>
 
       <div class="total">
         <span class="total-caption">Total</span>
-        <span class="total-price">{{ getTotal() }}</span>
+        <span class="total-price">{{ getTotal() | currency:'USD':true:'1.0-2' }}</span>
       </div>
 
 

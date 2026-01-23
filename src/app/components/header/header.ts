@@ -42,7 +42,7 @@ export class Header {
    openCart(){
     this._cartService.openCart();
  }
-    cartCount = computed(()=>{
-      return this._cartService.cartCount();
+    totalItems = computed(()=>{
+      return this._cartService.totalItems();
     })
 }
