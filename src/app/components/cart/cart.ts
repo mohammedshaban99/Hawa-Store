@@ -1,12 +1,12 @@
 import { Component, computed } from '@angular/core';
 import { Cartservice } from '../../services/cartservice/cartservice';
 import { IProduct } from '../../models/iproduct';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ProdcutService } from '../../services/productservice/productservice';
-import { single } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
+  standalone:true,
   imports: [CurrencyPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',

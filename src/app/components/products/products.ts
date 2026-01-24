@@ -1,48 +1,40 @@
-import { Component, computed, OnInit, Pipe } from '@angular/core';
+import { Component, computed } from '@angular/core';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { IProduct } from '../../models/iproduct';
-import { CurrencyPipe, NumberSymbol } from '@angular/common';
 import { ProdcutService } from '../../services/productservice/productservice';
 import { Categoryservice } from '../../services/categoryservice/categoryservice';
 import { Cartservice } from '../../services/cartservice/cartservice';
 
-
 @Component({
   selector: 'app-products',
-  imports: [CurrencyPipe],
+  imports: [CommonModule,CurrencyPipe],
   templateUrl: './products.html',
-  styleUrl: './products.css',
+  styleUrl: './products.css'
 })
 export class Products {
-   products:IProduct[]=[];
-   SelectedCategoryId:number=0;
-   SearchInputValue:string='';
+  products: IProduct[] = [];
+  SelectedCategoryId: number = 0;
+  SearchInputValue: string = '';
 
+  constructor(
+    private _productService: ProdcutService,
+    private _categoryService: Categoryservice,
+    private _cartService: Cartservice
+  ) {}
 
+  filteredproducts = computed(() => {
+    this.SelectedCategoryId = this._categoryService.SelectedCategoryId();
+    this.SearchInputValue = this._productService.SearchInputValue().toLowerCase();
+    this.products = this._productService.products();
 
-    constructor(private _productService:ProdcutService,
-              private  _categoryService:Categoryservice,
-              private _cartService:Cartservice
-    ) {
+    return this.products.filter(product => {
+      const matchCategory = this.SelectedCategoryId === 0 || product.CategoryId === this.SelectedCategoryId;
+      const matchSearchInput = this.SearchInputValue === '' || product.Name?.toLowerCase().includes(this.SearchInputValue);
+      return matchCategory && matchSearchInput;
+    });
+  });
 
-    }
-
-      filteredproducts= computed(()=>{
-            this.SelectedCategoryId=this._categoryService.SelectedCategoryId();
-            this.SearchInputValue=this._productService.SearchInputValue().toLowerCase();
-            this.products=this._productService.products();
-
-        return this.products.filter(product=>{
-         const matchCategory = this.SelectedCategoryId ===0 || product.CategoryId===this.SelectedCategoryId;
-         const matchSearchInput = this.SearchInputValue ==='' || product.Name.toLowerCase().includes(this.SearchInputValue);
-         return matchCategory && matchSearchInput;
-        })
-       });
-
-
-
-       AddToCart(product:IProduct)
-       {
-       this._cartService.addToCart(product);
-       }
-
+  AddToCart(product: IProduct) {
+    this._cartService.addToCart(product);
+  }
 }
