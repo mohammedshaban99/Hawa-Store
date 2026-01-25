@@ -10,25 +10,19 @@ import { SpinnerloadingService } from './services/spinnerloading/spinnerloadings
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Footer, Content, Header, Cart,NgxSpinnerModule  ],
+  imports: [Footer, Content, Header, Cart,NgxSpinnerModule ],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class App  implements OnInit  {
+export class App    {
   /**
    *
    */
-  constructor(private _spinner:SpinnerloadingService) {
+  constructor() {
 
   }
 
-   ngOnInit()
-   {
-        this._spinner.showSpinner();
-        setTimeout(()=>{
-          this._spinner.hideSpinner();
-        },5000)
-   }
+
 }
 

@@ -1,8 +1,7 @@
-@if(filteredproducts() ===null)
-{
-<div class="btn btn-danger">No Prodcuts To Display</div>
-}
+@if(filteredproducts().length === 0){
 
+<div  class="btn btn-danger d-flex justify-content-center align-items-center">No Prodcuts To Display</div>
+}
 @else{
 
 <div class="container my-5">
