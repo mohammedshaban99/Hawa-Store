@@ -1,50 +1,44 @@
 import { Injectable, signal } from '@angular/core';
-import { ICategory } from '../../models/icategory';
 import { map, Observable, single } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SpinnerloadingService } from '../spinnerloading/spinnerloadingservice';
 import { BaseUrl } from '../../api.constants';
+import { IProduct } from '../../models/iproduct';
+import { Notificationservice } from '../toastrNotificationService/notificationservice';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Categoryservice {
-  categories:ICategory[]=[];
-  SelectedCategoryId = signal<number>(0);
-  /**
-   *
-   */
-  constructor( private _httpClient:HttpClient,private _spinnerLoading:SpinnerloadingService) {
+  categories = signal<string[]>([]);
+  SelectedCategory = signal<string>('');
+
+  constructor( private _httpClient:HttpClient,private _spinnerLoading:SpinnerloadingService,
+              private _notificationService:Notificationservice
+  ) {
 
       this._spinnerLoading.showSpinner();
       this.getAllCategories().subscribe({
 
         next:(result)=>{
-         this.categories=result;
-           setTimeout(() => {
+         this.categories.set(result);
            this._spinnerLoading.hideSpinner();
-         }, 5000)
+        this._notificationService.success("load categories success","sucess")
+
         },
         error:(error)=>{
           console.log(error);
-         setTimeout(() => {
         this._spinnerLoading.hideSpinner();
-         }, 5000)
+       this._notificationService.error("load categories failed","error")
         }
       });
 
    }
-         getAllCategories(): Observable<ICategory[]> {
-        return this._httpClient.get<any[]>(`${BaseUrl}/categories`).pipe(
-          map((categories: any[]) =>
-            categories.map(category => ({
-              Id: category.id,
-              Name: category.name
-            }))
-          )
+       getAllCategories(): Observable<string[]> {
+        return this._httpClient.get<any[]>(`${BaseUrl}/products`).pipe(
+          map(products => products.map(p => p.category))
         );
-          }
-
+      }
 
 
   }

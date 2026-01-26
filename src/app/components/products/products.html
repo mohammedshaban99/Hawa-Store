@@ -14,7 +14,7 @@
 
       <div class="card-body d-flex flex-column">
 
-        <h5 class="card-title">{{ product?.Name }}</h5>
+        <h5 class="card-title">{{ product?.Name?.split(' ')?.slice(0, 2)?.join(' ') }}</h5>
 
         <p class="card-text text-muted mb-2">
           Price: <strong [class.text-danger]="product.Price <=0">{{ product?.Price| currency:'USD':true:'1.0-2' }}</strong>

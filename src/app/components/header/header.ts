@@ -1,5 +1,5 @@
 import { Component, computed } from '@angular/core';
-import { ICategory } from '../../models/icategory';
+// ...existing code...
 import { Categoryservice } from '../../services/categoryservice/categoryservice';
 import { Observable } from 'rxjs';
 import { ProdcutService } from '../../services/productservice/productservice';
@@ -14,8 +14,8 @@ import { Cartservice } from '../../services/cartservice/cartservice';
 })
 export class Header {
 
-  categories:ICategory[];
-  SelectedCategoryId:number;
+  categories:string[];
+  SelectedCategory:string='';
   SearchInputValue:string='';
   islogin:boolean=true;
 
@@ -23,14 +23,13 @@ export class Header {
               private _productService:ProdcutService ,
               private _cartService:Cartservice
   ) {
-   this.categories=_categoryService.categories;
-   this.SelectedCategoryId=0;
+   this.categories=_categoryService.categories();
   }
 
   OnCategoryChange(event:Event)
   {
-     this.SelectedCategoryId=Number((event.target as HTMLSelectElement).value);
-     this._categoryService.SelectedCategoryId.set(this.SelectedCategoryId);
+     this.SelectedCategory=(event.target as HTMLSelectElement).value;
+     this._categoryService.SelectedCategory.set(this.SelectedCategory);
   }
 
  OnSearchInputChange(event:Event)

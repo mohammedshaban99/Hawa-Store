@@ -20,7 +20,7 @@
           <option value="0">--Select Category--</option>
           @for(category of categories; track category)
           {
-          <option [value]="category.Id">{{category.Name}}</option>
+          <option [value]="category">{{category}}</option>
           }
         </select>
       </ul>

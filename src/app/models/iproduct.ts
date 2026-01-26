@@ -4,5 +4,5 @@ export interface IProduct {
   Price:number,
   Quantity:number,
   Image:string,
-  CategoryId:number
+  category:string
 }

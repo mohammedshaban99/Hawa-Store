@@ -15,7 +15,7 @@ import { SpinnerloadingService } from '../../services/spinnerloading/spinnerload
 export class Products  {
 
   products: IProduct[] = [];
-  SelectedCategoryId: number = 0;
+  SelectedCategory: string = '';
   SearchInputValue: string = '';
 
   constructor(
@@ -28,11 +28,11 @@ export class Products  {
 
 
   filteredproducts = computed(() => {
-    this.SelectedCategoryId = this._categoryService.SelectedCategoryId();
+    this.SelectedCategory = this._categoryService.SelectedCategory();
     this.SearchInputValue = this._productService.SearchInputValue().toLowerCase();
     this.products = this._productService.products();
     return this.products.filter(product => {
-      const matchCategory = this.SelectedCategoryId === 0 || product.CategoryId === this.SelectedCategoryId;
+      const matchCategory = this.SelectedCategory === '' || product.category === this.SelectedCategory;
       const matchSearchInput = this.SearchInputValue === '' || product.Name?.toLowerCase().includes(this.SearchInputValue);
       return matchCategory && matchSearchInput;
     });
