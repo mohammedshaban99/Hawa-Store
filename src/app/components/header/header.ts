@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ProdcutService } from '../../services/productservice/productservice';
 import { RouterLink } from "@angular/router";
 import { Cartservice } from '../../services/cartservice/cartservice';
+import { compilePipeFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,6 @@ import { Cartservice } from '../../services/cartservice/cartservice';
 })
 export class Header {
 
-  categories:string[];
   SelectedCategory:string='';
   SearchInputValue:string='';
   islogin:boolean=true;
@@ -23,8 +23,11 @@ export class Header {
               private _productService:ProdcutService ,
               private _cartService:Cartservice
   ) {
-   this.categories=_categoryService.categories();
   }
+  categories = computed(() => this._categoryService.categories());
+   totalItems = computed(()=>this._cartService.totalItems())
+
+
 
   OnCategoryChange(event:Event)
   {
@@ -41,7 +44,5 @@ export class Header {
    openCart(){
     this._cartService.openCart();
  }
-    totalItems = computed(()=>{
-      return this._cartService.totalItems();
-    })
+
 }

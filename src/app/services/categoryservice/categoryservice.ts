@@ -21,10 +21,8 @@ export class Categoryservice {
       this.getAllCategories().subscribe({
 
         next:(result)=>{
-         this.categories.set(result);
+           this.categories.set([...new Set(result)]);
            this._spinnerLoading.hideSpinner();
-        this._notificationService.success("load categories success","Success")
-
         },
         error:(error)=>{
           console.log(error);
@@ -37,7 +35,7 @@ export class Categoryservice {
    }
        getAllCategories(): Observable<string[]> {
         return this._httpClient.get<any[]>(`${BaseUrl}/products`).pipe(
-          map(products => products.map(p => p.category))
+          map(products => products.map(p => p.category.name))
         );
       }
 

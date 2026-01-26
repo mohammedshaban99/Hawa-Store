@@ -24,8 +24,6 @@ export class ProdcutService{
         next:(result)=>{
         this.products.set(result);
         this._spinnerLoading.hideSpinner();
-        this._notificationService.success("load products success","Success")
-
         },
         error:(error)=>{
         this._spinnerLoading.hideSpinner();
@@ -43,8 +41,8 @@ export class ProdcutService{
         Name: p.title,
         Price: p.price,
         Quantity: 2000,
-        Image: p.image,
-        category: p.category
+        Image: p.images[0],
+        category: p.category.name
       })))
     );
   }
