@@ -1,41 +1,43 @@
 import { Injectable, signal } from '@angular/core';
-import { ICategory } from '../../models/icategory';
-import { Observable, single } from 'rxjs';
+import { map, Observable, single } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { SpinnerloadingService } from '../spinnerloading/spinnerloadingservice';
+import { BaseUrl } from '../../api.constants';
+import { IProduct } from '../../models/iproduct';
+import { Notificationservice } from '../toastrNotificationService/notificationservice';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Categoryservice {
-  categories:ICategory[];
-  SelectedCategoryId = signal<number>(0);
-  /**
-   *
-   */
-  constructor() {
-  this.categories=[
- {
-    Id: 1,
-    Name: 'Computer Accessories'
-  },
-  {
-    Id: 2,
-    Name: 'Mobile Devices'
-  },
-  {
-    Id: 3,
-    Name: 'Audio & Wearables'
-  },
-  {
-    Id: 4,
-    Name: 'Chargers & Power'
-  }
+  categories = signal<string[]>([]);
+  SelectedCategory = signal<string>('');
 
-  ]
-  }
+  constructor( private _httpClient:HttpClient,private _spinnerLoading:SpinnerloadingService,
+              private _notificationService:Notificationservice
+  ) {
 
+      this._spinnerLoading.showSpinner();
+      this.getAllCategories().subscribe({
 
+        next:(result)=>{
+           this.categories.set([...new Set(result)]);
+           this._spinnerLoading.hideSpinner();
+        },
+        error:(error)=>{
+          console.log(error);
+        this._spinnerLoading.hideSpinner();
+      this._notificationService.error("We’re having trouble connecting to the server. Please try again in a moment.","Error")
 
+        }
+      });
 
    }
+       getAllCategories(): Observable<string[]> {
+        return this._httpClient.get<any[]>(`${BaseUrl}/products`).pipe(
+          map(products => products.map(p => p.category.name))
+        );
+      }
 
 
+  }
