@@ -18,7 +18,7 @@ import { SpinnerloadingService } from './services/spinnerloading/spinnerloadings
 export class App  implements OnInit  {
   /**
    *
-   */
+   */ 
   constructor(private _spinner:SpinnerloadingService) {
 
   }
@@ -28,7 +28,7 @@ export class App  implements OnInit  {
         this._spinner.showSpinner();
         setTimeout(()=>{
           this._spinner.hideSpinner();
-        },5000)
+        },10000)
    }
 }
 
