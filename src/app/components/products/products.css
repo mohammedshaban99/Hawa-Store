@@ -4,3 +4,27 @@
 .container{
   min-height: 100vh;
 }
+
+@media (max-width:668px) {
+  .card{
+    width: 250px !important;
+  }
+}
+@media (max-width:554px) {
+  .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.card{
+    width: 300px !important;
+  }
+
+}
+@media (max-width:320px) {
+
+.card{
+    width: 250px !important;
+  }
+
+}
