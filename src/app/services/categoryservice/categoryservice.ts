@@ -23,13 +23,14 @@ export class Categoryservice {
         next:(result)=>{
          this.categories.set(result);
            this._spinnerLoading.hideSpinner();
-        this._notificationService.success("load categories success","sucess")
+        this._notificationService.success("load categories success","Success")
 
         },
         error:(error)=>{
           console.log(error);
         this._spinnerLoading.hideSpinner();
-       this._notificationService.error("load categories failed","error")
+      this._notificationService.error("We’re having trouble connecting to the server. Please try again in a moment.","Error")
+
         }
       });
 

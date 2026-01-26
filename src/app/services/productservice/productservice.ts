@@ -24,12 +24,12 @@ export class ProdcutService{
         next:(result)=>{
         this.products.set(result);
         this._spinnerLoading.hideSpinner();
-        this._notificationService.success("load products success","sucess")
+        this._notificationService.success("load products success","Success")
 
         },
         error:(error)=>{
         this._spinnerLoading.hideSpinner();
-       this._notificationService.error("load products failed","error")
+       this._notificationService.error("We’re having trouble connecting to the server. Please try again in a moment.","Error")
         }
       });
     }
