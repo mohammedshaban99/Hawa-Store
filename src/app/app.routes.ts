@@ -5,8 +5,9 @@ import { Register } from './components/register/register';
 import { Notfound } from './components/notfound/notfound';
 
 export const routes: Routes = [
-{path:'home',component:Home},
-{path:'login',component:Login},
-{path:'register',component:Register},
-{path:'**',component:Notfound}
+  {path:'',redirectTo:'home',pathMatch: 'full'},
+{path:'home',component:Home,pathMatch:'full'},
+{path:'login',component:Login,pathMatch:'full'},
+{path:'register',component:Register,pathMatch:'full'},
+{path:'**',component:Notfound,pathMatch:'full'}
 ];
