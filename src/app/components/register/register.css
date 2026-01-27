@@ -1,0 +1,9 @@
+.card {
+ background: rgba(255, 255, 255, 0.2); /* semi-transparent */
+  backdrop-filter: blur(15px);          /* frosted blur effect */
+  -webkit-backdrop-filter: blur(15px);  /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+  border-radius: 1rem;                   /* rounded corners */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* optional shadow */
+  padding: 2rem;
+}

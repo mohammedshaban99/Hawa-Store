@@ -9,7 +9,7 @@ import { compilePipeFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
-import { Cart } from './components/cart/cart';
+import { Home } from './components/home/home';
+import { Login } from './components/login/login';
+import { Register } from './components/register/register';
+import { Notfound } from './components/notfound/notfound';
 
 export const routes: Routes = [
-{path:'Cart',component:Cart}
-
-
+{path:'home',component:Home},
+{path:'login',component:Login},
+{path:'register',component:Register},
+{path:'**',component:Notfound}
 ];
