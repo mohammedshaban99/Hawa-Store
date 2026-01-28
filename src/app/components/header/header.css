@@ -3,7 +3,10 @@
   background-color: white !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
+.navbar-brand img{
+  width: 100px;
+  height: 100px;
+}
 /* Select inside navbar */
 .collapse.navbar-collapse select{
   border: none;
@@ -77,4 +80,9 @@
 .btn-register:hover{
   background-color: #ff9c42;
   border-color: #ff9c42;
+}
+
+.active{
+  background-color: #ff9c42;
+    border-radius: 5px;
 }
