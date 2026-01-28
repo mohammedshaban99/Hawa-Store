@@ -1,29 +1,26 @@
-
-
+/* Navbar base styles */
 .navbar{
   background-color: white !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
 }
 
-
+/* Select inside navbar */
 .collapse.navbar-collapse select{
   border: none;
   background-color: transparent;
-  color:rgba(0,0,0, 0.65);
-
+  color: rgba(0,0,0, 0.65);
 }
 
-
-
-
+/* Focus outline */
 :focus-visible{
  outline: none;
 }
 
+/* Cart icon */
 .bi-cart3::before {
     font-size: 30px;
 }
+
 .cart{
   position: relative;
   width: 30px;
@@ -43,12 +40,41 @@
   color: white;
 }
 
+/* Search and cart container */
 .search-cart-container{
   display: flex;
+  align-items: center;
   margin-right: 20px;
 }
 
-.button-cart{
-border: none;
-background-color: transparent;
+/* Login button */
+.btn-login{
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover{
+  background-color: #333;
+  color: white;
+}
+
+/* Register button */
+.btn-register{
+  background-color: #F5841F;
+  color: white;
+  border: 1px solid #F5841F;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-register:hover{
+  background-color: #ff9c42;
+  border-color: #ff9c42;
 }
