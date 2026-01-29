@@ -1,0 +1,131 @@
+<!-- User Management Table - Clean Modern Design -->
+<div class="container-fluid p-4">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="h3 mb-1">Users</h2>
+      <p class="text-secondary mb-0 small">Manage your team members and their permissions</p>
+    </div>
+    <button class="btn btn-primary">
+      <i class="fas fa-plus me-2"></i>Add User
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Search users...">
+    </div>
+    <div class="col-md-3">
+      <select class="form-select">
+        <option>All Roles</option>
+        <option>Admin</option>
+        <option>Customer</option>
+        <option>Manager</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select">
+        <option>Newest First</option>
+        <option>Oldest First</option>
+        <option>Name A-Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="border-0 ps-4">
+              <input type="checkbox" class="form-check-input">
+            </th>
+            <th class="border-0">User</th>
+            <th class="border-0">Email</th>
+            <th class="border-0">Role</th>
+            <th class="border-0">Created</th>
+            <th class="border-0">Last Active</th>
+            <th class="border-0 text-end pe-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(user of users$ | async; track user.id) {
+          <tr>
+            <td class="ps-4">
+              <input type="checkbox" class="form-check-input">
+            </td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <img [src]="user.avatar" [alt]="user.name"
+                     class="rounded-circle"
+                     width="40" height="40"
+                     style="object-fit: cover;">
+                <div>
+                  <div class="fw-medium">{{ user.name }}</div>
+                  <small class="text-muted">ID: {{ user.id }}</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-muted">{{ user.email }}</td>
+            <td>
+              <span class="badge rounded-pill"
+                    [class.bg-danger]="user.role === 'admin'"
+                    [class.bg-primary]="user.role === 'customer'"
+                    [class.bg-warning]="user.role === 'manager'">
+                {{ user.role }}
+              </span>
+            </td>
+            <td class="text-muted small">{{ user.creationAt | date:'MMM d, y' }}</td>
+            <td class="text-muted small">{{ user.updatedAt | date:'MMM d, y' }}</td>
+            <td class="text-end pe-4">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-secondary" title="View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-outline-secondary" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-outline-danger" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="7" class="text-center py-5">
+              <div class="text-muted">
+                <i class="fas fa-users fa-3x mb-3 opacity-25"></i>
+                <p class="mb-0">No users found</p>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+      <small class="text-muted">
+        Showing {{ (users$ | async)?.length || 0 }} users
+      </small>
+      <nav>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
