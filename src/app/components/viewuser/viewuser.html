@@ -1,0 +1,37 @@
+<!-- viewuser.html -->
+@if(user$ | async; as user) {
+  @if(user === null) {
+    <div class="btn btn-danger">No user found with this id</div>
+  }
+  @else {
+    <div class="user-card">
+      <div class="user-header">
+        <img class="avatar" src="{{ user.avatar }}" alt="User Avatar">
+        <h2 class="username">{{ user.name }}</h2>
+        <span class="role">{{ user.role }}</span>
+      </div>
+
+      <div class="user-details">
+        <div class="detail">
+          <span class="label">ID</span>
+          <span class="value">{{ user.id }}</span>
+        </div>
+
+        <div class="detail">
+          <span class="label">Email</span>
+          <span class="value">{{ user.email }}</span>
+        </div>
+
+        <div class="detail">
+          <span class="label">Created At</span>
+          <span class="value">{{ user.creationAt }}</span>
+        </div>
+
+        <div class="detail">
+          <span class="label">Updated At</span>
+          <span class="value">{{ user.updatedAt }}</span>
+        </div>
+      </div>
+    </div>
+  }
+}

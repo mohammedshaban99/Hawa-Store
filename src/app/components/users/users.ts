@@ -6,14 +6,17 @@ import { Notificationservice } from '../../services/toastrNotificationService/no
 import { SpinnerloadingService } from '../../services/spinnerloading/spinnerloadingservice';
 import { flush } from '@angular/core/testing';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-users',
-  imports: [AsyncPipe,UpperCasePipe,CommonModule],
+  imports: [AsyncPipe, CommonModule, RouterLink],
   templateUrl: './users.html',
   styleUrl: './users.css',
 })
 export class Users  implements OnInit{
+
+
 
   users$!: Observable<IUser[]>;
 
@@ -28,7 +31,6 @@ export class Users  implements OnInit{
     finalize(()=> this._spinnerLoading.hideSpinner())
    );
   }
-
 
 
 

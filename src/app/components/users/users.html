@@ -1,5 +1,6 @@
 <!-- User Management Table - Clean Modern Design -->
 <div class="container-fluid  p-5 w1">
+    <button class="btn btn-primary mb-4"  routerLink="/home">Back to Home</button>
 
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
@@ -7,15 +8,12 @@
       <h2 class="h3 mb-1">Users</h2>
       <p class="text-secondary mb-0 small">Manage your team members and their permissions</p>
     </div>
-    <button class="btn btn-primary">
-      <i class="fas fa-plus me-2"></i>Add New User
-    </button>
   </div>
 
   <!-- Filters -->
   <div class="row g-3 mb-4">
     <div class="col-md-6">
-      <input type="text" class="form-control" placeholder="Search users...">
+      <input  type="text" class="form-control" placeholder="Search users...">
     </div>
   </div>
 
@@ -60,15 +58,13 @@
             <td class="text-muted small">{{ user.updatedAt | date:'MMM d, y' }}</td>
             <td class="text-end pe-4">
               <div class="btn-group btn-group-sm ">
-                <button class="btn " title="View">
+                <button class="btn" title="View" [routerLink]="['/view-user', user.id]">
                   <i class="bi bi-eye"></i>
                 </button>
-                <button class="btn " title="Edit">
+                <button class="btn " title="Edit"  >
                   <i class="bi bi-pencil"></i>
                 </button>
-              <button class="btn " title="Delete">
-                <i class="bi bi-trash"></i>
-              </button>
+
               </div>
             </td>
           </tr>

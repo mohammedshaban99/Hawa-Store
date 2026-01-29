@@ -5,13 +5,15 @@ import { Register } from './components/register/register';
 import { Notfound } from './components/notfound/notfound';
 import { Aboutus } from './components/aboutus/aboutus';
 import { Users } from './components/users/users';
+import { Viewuser } from './components/viewuser/viewuser';
 
 export const routes: Routes = [
-  {path:'',redirectTo:'home',pathMatch: 'full'},
+{path:'',redirectTo:'home',pathMatch: 'full'},
 {path:'home',component:Home,pathMatch:'full'},
 {path:'login',component:Login,pathMatch:'full'},
 {path:'register',component:Register,pathMatch:'full'},
 {path:'about-us',component:Aboutus,pathMatch:'full'},
 {path:'users',component:Users,pathMatch:'full'},
+{path:'view-user/:id',component:Viewuser,pathMatch:'full'},
 {path:'**',component:Notfound,pathMatch:'full'}
 ];
