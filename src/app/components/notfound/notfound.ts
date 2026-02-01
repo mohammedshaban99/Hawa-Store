@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-notfound',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './notfound.html',
   styleUrl: './notfound.css',
 })
 export class Notfound {
+constructor(private router: Router) {}
 
+  goBack(): void {
+    history.back();
+  }
 }

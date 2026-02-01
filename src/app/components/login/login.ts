@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { ILogin } from '../../models/ilogin';
 import { Notificationservice } from '../../services/toastrNotificationService/notificationservice';
 import { Authservice } from '../../services/authservice/authservice';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'], // Can reuse adduser.css as login.css

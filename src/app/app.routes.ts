@@ -6,6 +6,7 @@ import { Notfound } from './components/notfound/notfound';
 import { Aboutus } from './components/aboutus/aboutus';
 import { Users } from './components/users/users';
 import { Viewuser } from './components/viewuser/viewuser';
+import { ContactUsComponent } from './components/contactus/contactus';
 
 export const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch: 'full'},
@@ -13,6 +14,7 @@ export const routes: Routes = [
 {path:'login',component:Login,pathMatch:'full'},
 {path:'register',component:Register,pathMatch:'full'},
 {path:'about-us',component:Aboutus,pathMatch:'full'},
+{path:'contact-us',component:ContactUsComponent,pathMatch:'full'},
 {path:'users',component:Users,pathMatch:'full'},
 {path:'view-user/:id',component:Viewuser,pathMatch:'full'},
 {path:'**',component:Notfound,pathMatch:'full'}
