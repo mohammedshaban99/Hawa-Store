@@ -1,0 +1,435 @@
+/* ============================================================
+   LEARN-MORE COMPONENT STYLES — Plain CSS
+   eCommerce dark-luxury theme. Bootstrap 5 required.
+   ============================================================ */
+
+/* ─── Page Root ─── */
+.lm-page {
+  background: #0a0f1e;
+  color: #cbd5e1;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Shared: Badge ─── */
+.lm-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+}
+
+/* ─── Shared: Gradient Text ─── */
+.lm-gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shared: Section Title ─── */
+.lm-section-title {
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+/* ─── Shared: Section Desc ─── */
+.lm-section-desc {
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ─── Shared: Buttons ─── */
+.lm-btn-primary {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #0f172a !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.6rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.lm-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(56, 189, 248, 0.4);
+}
+
+.lm-btn-ghost {
+  background: transparent;
+  color: #94a3b8 !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 0.7rem 1.6rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.lm-btn-ghost:hover {
+  color: #38bdf8 !important;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.lm-hero {
+  position: relative;
+  min-height: 100vh;
+  background: #0a0f1e;
+  overflow: hidden;
+}
+.lm-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+.lm-hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.lm-hero-glow-1 {
+  width: 400px; height: 400px;
+  background: #38bdf8;
+  top: -120px; left: -100px;
+}
+.lm-hero-glow-2 {
+  width: 300px; height: 300px;
+  background: #a78bfa;
+  bottom: -80px; right: -60px;
+}
+
+/* Hero Content */
+.lm-hero-content {
+  padding: 6rem 0;
+}
+.lm-hero-title {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  font-weight: 800;
+  color: #f1f5f9;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+.lm-hero-desc {
+  font-size: 1rem;
+  color: #64748b;
+  max-width: 420px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+/* Hero Visual — floating cards */
+.lm-hero-visual {
+  position: relative;
+  width: 380px;
+  height: 380px;
+}
+.lm-hero-circle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lmPulseCircle 4s ease-in-out infinite;
+}
+@keyframes lmPulseCircle {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%      { transform: translate(-50%, -50%) scale(1.06); }
+}
+
+.lm-card-float {
+  position: absolute;
+  animation: lmFloat ease-in-out infinite;
+}
+.lm-card-float-1 { top: 8%;  left: 2%;  animation-duration: 6s; }
+.lm-card-float-2 { top: 12%; right: 0%; animation-duration: 7s; animation-delay: 1s; }
+.lm-card-float-3 { bottom: 12%; left: 10%; animation-duration: 6.5s; animation-delay: 2s; }
+@keyframes lmFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+.lm-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+.lm-mini-card-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.lm-mini-card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+.lm-mini-card-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin: 0.1rem 0 0;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.lm-stats {
+  background: #111827;
+  border-top: 1px solid #1e293b;
+  border-bottom: 1px solid #1e293b;
+  padding: 3rem 0;
+}
+.lm-stat-item {
+  position: relative;
+}
+.lm-stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; height: 60%;
+  width: 1px;
+  background: #1e293b;
+}
+.lm-stat-number {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.lm-stat-label {
+  font-size: 0.78rem;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0.3rem 0 0;
+}
+
+/* ============================================================
+   FEATURES
+   ============================================================ */
+.lm-features {
+  padding: 7rem 0;
+}
+.lm-feature-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  padding: 2rem;
+  height: 100%;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  animation: lmFadeUp 0.5s ease both;
+}
+.lm-feature-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+@keyframes lmFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lm-feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lm-feature-icon svg { display: block; }
+.lm-feature-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+.lm-feature-desc {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+.lm-how {
+  padding: 5rem 0 7rem;
+  background: #0a0f1e;
+}
+.lm-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.lm-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  position: relative;
+}
+.lm-step + .lm-step {
+  margin-top: 0;
+}
+
+.lm-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.lm-step-number {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.lm-step-line {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(180deg, #38bdf8, transparent);
+  margin-top: 0;
+}
+.lm-step:last-child .lm-step-line {
+  display: none;
+}
+
+.lm-step-content {
+  padding-bottom: 2rem;
+}
+.lm-step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0.15rem 0 0;
+}
+.lm-step-desc {
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0.3rem 0 0;
+  max-width: 420px;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.lm-testimonials {
+  padding: 5rem 0 7rem;
+  background: #111827;
+  border-top: 1px solid #1e293b;
+}
+.lm-testimonial-card {
+  background: #0a0f1e;
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  padding: 1.8rem;
+  height: 100%;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.lm-testimonial-card:hover {
+  border-color: rgba(244, 114, 182, 0.3);
+  transform: translateY(-3px);
+}
+.lm-stars {
+  color: #f59e0b;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+.lm-testimonial-text {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  font-style: italic;
+  margin: 0;
+}
+.lm-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.lm-testimonial-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+.lm-testimonial-role {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0.1rem 0 0;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.lm-cta {
+  position: relative;
+  padding: 7rem 0;
+  background: #0a0f1e;
+  overflow: hidden;
+  text-align: center;
+}
+.lm-cta-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%);
+  pointer-events: none;
+}
