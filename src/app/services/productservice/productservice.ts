@@ -41,8 +41,8 @@ export class ProdcutService{
         Name: p.title,
         Price: p.price,
         Quantity: 2000,
-        Image: p.images[0],
-        category: p.category.name
+        Image: p.image,
+        category: p.category
       })))
     );
   }

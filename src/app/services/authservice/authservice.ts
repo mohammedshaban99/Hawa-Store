@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ILoginResponse } from '../../models/iloginresponse';
 import { ILogin } from '../../models/ilogin';
 import { BaseUrl } from '../../api.constants';
+import { IUser } from '../../models/iuser';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,8 @@ export class Authservice {
         return this._httpClient.post<any>(`${BaseUrl}/auth/login`,login);
    }
 
+   getUserInfo():Observable<IUser>{
+    return this._httpClient.get<IUser>(`${BaseUrl}/auth/profile`);
+   }
 
 }

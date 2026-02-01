@@ -35,7 +35,7 @@ export class Categoryservice {
    }
        getAllCategories(): Observable<string[]> {
         return this._httpClient.get<any[]>(`${BaseUrl}/products`).pipe(
-          map(products => products.map(p => p.category.name))
+          map(products => products.map(p => p.category))
         );
       }
 

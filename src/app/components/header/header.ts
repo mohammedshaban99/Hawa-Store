@@ -24,7 +24,7 @@ export class Header {
               private _cartService:Cartservice
   ) {
   }
-  categories = computed(() => this._categoryService.categories());
+    categories = computed(() => this._categoryService.categories());
    totalItems = computed(()=>this._cartService.totalItems())
 
 
