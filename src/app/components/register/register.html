@@ -2,21 +2,33 @@
   <div>
     <label for="name">Name:</label>
     <input id="name" type="text" formControlName="name" placeholder="Enter full name" />
+    @if(name?.invalid && name?.touched){
+      <span class="error-message"> name is required</span>
+    }
   </div>
 
   <div>
     <label for="email">Email:</label>
     <input id="email" type="email" formControlName="email" placeholder="user@example.com" />
+      @if(email?.invalid && email?.touched){
+      <span class="error-message"> Please enter a valid email.</span>
+    }
   </div>
 
   <div>
     <label for="password">Password:</label>
     <input id="password" type="password" formControlName="password" placeholder="Enter password" />
+    @if(password?.invalid && password?.touched)
+    {
+         <span class="error-message"> Password must be at least 6 characters.</span>
+    }
   </div>
-
   <div>
     <label for="avatar">Your Image Url:</label>
     <input id="avatar" type="text" formControlName="avatar" placeholder="https://example.com/avatar.jpg" />
+     @if(avatar?.invalid && avatar?.touched){
+      <span class="error-message"> avatar is required</span>
+    }
   </div>
 
   <div>

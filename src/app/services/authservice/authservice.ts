@@ -21,5 +21,5 @@ export class Authservice {
         return this._httpClient.post<any>(`${BaseUrl}/auth/login`,login);
    }
 
-   
+
 }

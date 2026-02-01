@@ -6,14 +6,18 @@ import { ILogin } from '../../models/ilogin';
 import { Notificationservice } from '../../services/toastrNotificationService/notificationservice';
 import { Authservice } from '../../services/authservice/authservice';
 import { CommonModule } from '@angular/common';
+import { ILoginResponse } from '../../models/iloginresponse';
 
 @Component({
   imports: [ReactiveFormsModule,CommonModule],
   selector: 'app-login',
   templateUrl: './login.html',
-  styleUrls: ['./login.css'], // Can reuse adduser.css as login.css
+  styleUrls: ['./login.css'],
 })
 export class Login {
+
+   token!:ILoginResponse;
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -29,7 +33,9 @@ export class Login {
     if (this.loginForm.valid) {
       const loginData: ILogin = this.loginForm.value as ILogin;
       this._authService.login(loginData).subscribe({
-        next: () => {
+        next: (data) => {
+          this.token=data;
+          localStorage.setItem('token', JSON.stringify(this.token));
           this._router.navigateByUrl('/home');
           this._notificationService.success('Login successful', 'success');
         },
@@ -44,4 +50,12 @@ export class Login {
   cancelLogin() {
     this._router.navigateByUrl('/home');
   }
+
+ get email(){
+  return this.loginForm.get('email');
+ }
+ get password(){
+  return this.loginForm.get('password');
+ }
+
 }

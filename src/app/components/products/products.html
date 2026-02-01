@@ -20,7 +20,7 @@
           In Stock: {{ product?.Quantity }}
         </p>
 
-        <button class="btn btn-primary mt-auto" [disabled]="product.Quantity === 0"  (click)="AddToCart(product)">
+        <button class="btn btn-primary mt-auto" [disabled]="product.Quantity === 0" [ngClass]="{ 'hide': role === Roles.admin }"  (click)="AddToCart(product)">
           Add to Cart
         </button>
 

@@ -1,10 +1,11 @@
-import { Component, computed, OnInit } from '@angular/core';
+import { Component, computed, Input, input, inputBinding, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { IProduct } from '../../models/iproduct';
 import { ProdcutService } from '../../services/productservice/productservice';
 import { Categoryservice } from '../../services/categoryservice/categoryservice';
 import { Cartservice } from '../../services/cartservice/cartservice';
 import { SpinnerloadingService } from '../../services/spinnerloading/spinnerloadingservice';
+import { Roles } from '../../enums/roles';
 
 @Component({
   selector: 'app-products',
@@ -14,6 +15,8 @@ import { SpinnerloadingService } from '../../services/spinnerloading/spinnerload
 })
 export class Products  {
 
+ @Input() role:Roles=Roles.customer;
+  Roles = Roles;
   products: IProduct[] = [];
   SelectedCategory: string = '';
   SearchInputValue: string = '';

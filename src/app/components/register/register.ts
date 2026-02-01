@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Userservice } from '../../services/userservice/userservice';
 import { Router } from '@angular/router';
 import { IUser } from '../../models/iuser';
@@ -19,10 +19,10 @@ export class Register {
               private _notificationService:Notificationservice) {}
 
   profileForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    name: new FormControl(''),
-    avatar: new FormControl('')
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required]),
+    name: new FormControl('',[Validators.required]),
+    avatar: new FormControl('',[Validators.required])
   });
 
   onSubmit() {
@@ -30,7 +30,7 @@ export class Register {
       this.user = this.profileForm.value as IUser;
       this._userService.adduser(this.user).subscribe({
         next: () => {
-            this._router.navigateByUrl('/home')
+            this._router.navigateByUrl('/login')
             this._notificationService.success('user registerd sccessfully','success');
         },
         error: (err) =>{
@@ -44,4 +44,18 @@ export class Register {
   cancelSave() {
     this._router.navigateByUrl('/home');
   }
+
+  get name(){
+    return this.profileForm.get('name');
+  }
+   get email(){
+    return this.profileForm.get('email');
+  }
+   get password(){
+    return this.profileForm.get('password');
+  }
+   get avatar(){
+    return this.profileForm.get('avatar');
+  }
+
 }

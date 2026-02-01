@@ -4,17 +4,18 @@
   <div>
     <label for="email">Email:</label>
     <input id="email" type="email" formControlName="email" placeholder="user@example.com" />
-    <span class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-      Please enter a valid email.
-    </span>
+    @if(email?.invalid && email?.touched){
+        <span class="error-message"> Please enter a valid email.</span>
+    }
   </div>
 
   <div>
     <label for="password">Password:</label>
     <input id="password" type="password" formControlName="password" placeholder="Enter password" />
-    <span class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-      Password must be at least 6 characters.
-    </span>
+    @if(password?.invalid && password?.touched)
+    {
+         <span class="error-message"> Password must be at least 6 characters.</span>
+    }
   </div>
 
   <div>
