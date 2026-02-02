@@ -4,7 +4,7 @@ import { Notificationservice } from '../toastrNotificationService/notificationse
 import { Observable } from 'rxjs';
 import { ILoginResponse } from '../../models/iloginresponse';
 import { ILogin } from '../../models/ilogin';
-import { BaseUrl } from '../../api.constants';
+import { BaseUrl, BaseUsersUrl } from '../../api.constants';
 import { IUser } from '../../models/iuser';
 
 @Injectable({
@@ -19,11 +19,11 @@ export class Authservice {
    }
 
    login(login:ILogin):Observable<ILoginResponse>{
-        return this._httpClient.post<any>(`${BaseUrl}/auth/login`,login);
+        return this._httpClient.post<any>(`${BaseUsersUrl}/auth/login`,login);
    }
 
    getUserInfo():Observable<IUser>{
-    return this._httpClient.get<IUser>(`${BaseUrl}/auth/profile`);
+    return this._httpClient.get<IUser>(`${BaseUsersUrl}/auth/profile`);
    }
 
 }

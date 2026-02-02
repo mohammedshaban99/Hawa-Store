@@ -1,7 +1,10 @@
 export interface IUser{
   id:number,
-  username:string,
   email:string,
   password:string,
-
+  name:string,
+  role:string,
+  avatar:string,
+  creationAt:string,
+  updatedAt:string
 }

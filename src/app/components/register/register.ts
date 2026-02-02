@@ -34,7 +34,7 @@ export class Register {
             this._notificationService.success('user registerd sccessfully','success');
         },
         error: (err) =>{
-           this._router.navigateByUrl('/home')
+           this._router.navigateByUrl('/register')
           this._notificationService.error('user failed to  register','error');
         }
       });

@@ -40,7 +40,7 @@ export class Login {
           this._notificationService.success('Login successful', 'success');
         },
         error: () => {
-           this._router.navigateByUrl('/home');
+           this._router.navigateByUrl('/login');
           this._notificationService.error('Login failed', 'error');
         },
       });

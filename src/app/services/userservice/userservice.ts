@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { BaseUrl } from '../../api.constants';
+import { BaseUrl, BaseUsersUrl } from '../../api.constants';
 import { catchError, Observable, of, throwError } from 'rxjs';
 import { IUser } from '../../models/iuser';
 import { Notificationservice } from '../toastrNotificationService/notificationservice';
@@ -26,7 +26,7 @@ export class Userservice {
     }
   getUserById(id: number): Observable<IUser | null> {
   return this._httpClient
-    .get<IUser>(`${BaseUrl}/users/${id}`)
+    .get<IUser>(`${BaseUsersUrl}/users/${id}`)
     .pipe(
       catchError(err => {
         if (err.status === 404) {
@@ -40,10 +40,10 @@ export class Userservice {
 
 
    adduser(user:IUser):Observable<IUser>{
-    return this._httpClient.post<IUser>(`${BaseUrl}/users`,user);
+    return this._httpClient.post<IUser>(`${BaseUsersUrl}/users`,user);
    }
 
-   
+
 }
 
 

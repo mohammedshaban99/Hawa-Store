@@ -1,59 +1,102 @@
-# ECommerce
+# Hawa Store
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+A modern e-commerce web application built with Angular 21. A full-featured online shopping platform that allows customers to browse products, filter by category, search for items, manage a shopping cart, and handle user authentication.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Product Catalog** - Browse products with real-time filtering by category and keyword search
+- **Shopping Cart** - Add/remove products, adjust quantities, view totals with shipping
+- **User Authentication** - Login and registration with token-based authentication
+- **Responsive Design** - Mobile-friendly UI with Bootstrap and Tailwind CSS
 
-```bash
-ng serve
+## Tech Stack
+
+| Category | Technologies |
+|----------|-------------|
+| Framework | Angular 21.1.1 |
+| Language | TypeScript 5.9.2 |
+| Styling | Bootstrap 5.3.8, Tailwind CSS 4.1.18 |
+| Icons | Bootstrap Icons 1.13.1 |
+| State | Angular Signals, RxJS 7.8.0 |
+| UI Components | ngx-spinner, ngx-toastr |
+| Testing | Vitest 4.0.8 |
+| API | FakeStore API |
+
+## Project Structure
+
+```
+src/app/
+├── components/          # UI Components
+│   ├── home/           # Landing page with product catalog
+│   ├── header/         # Navigation & search
+│   ├── footer/         # Footer
+│   ├── cart/           # Shopping cart sidebar
+│   ├── products/       # Product listing & filtering
+│   ├── login/          # Login form
+│   ├── register/       # Registration form
+│   ├── aboutus/        # About Us page
+│   ├── contactus/      # Contact Us page
+│   └── notfound/       # 404 error page
+├── services/           # Business logic & API calls
+├── models/             # TypeScript interfaces
+├── guards/             # Route protection
+├── interceptors/       # HTTP interceptors
+└── enums/              # TypeScript enumerations
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js (npm 11.6.2 or higher)
+- Angular CLI 21.1.1
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Installation
 
 ```bash
-ng generate --help
+# Install dependencies
+npm install
+
+# Start development server
+npm start
 ```
 
-## Building
+The application will be available at `http://localhost:4200`
 
-To build the project run:
+## Available Scripts
 
-```bash
-ng build
-```
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start development server |
+| `npm run build` | Build for production |
+| `npm run watch` | Build with watch mode |
+| `npm test` | Run unit tests |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Pages & Routes
 
-## Running unit tests
+| Route | Description |
+|-------|-------------|
+| `/` | Home - Product catalog |
+| `/login` | User login |
+| `/register` | User registration |
+| `/about-us` | About the store |
+| `/contact-us` | Contact form |
+| `/learn-more` | Additional information |
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Services
 
-```bash
-ng test
-```
+| Service | Purpose |
+|---------|---------|
+| ProductService | Product data, filtering, and search |
+| CategoryService | Product categories |
+| CartService | Shopping cart operations |
+| AuthService | User authentication |
+| UserService | User registration and profiles |
 
-## Running end-to-end tests
+## API
 
-For end-to-end (e2e) testing, run:
+This application uses the [FakeStore API](https://fakestoreapi.com) for product and authentication data.
 
-```bash
-ng e2e
-```
+## License
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is private.
