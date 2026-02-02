@@ -42,6 +42,8 @@ export class Userservice {
    adduser(user:IUser):Observable<IUser>{
     return this._httpClient.post<IUser>(`${BaseUrl}/users`,user);
    }
+
+   
 }
 
 
